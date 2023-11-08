@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,17 +17,26 @@ public class Main {
         Collections.sort(listaAlumnos, comparadorNombre);
 
         //Imprime
+        /*for (Alumno alumno : listaAlumnos){
+            System.out.println("El nombre del alumno es: "+alumno.getNombre());
+            System.out.println("El apellido del alumno es: "+alumno.getApellido());
+            System.out.println("La edad del alumno es: "+alumno.getEdad());
+            System.out.println("---------------------------------------");
+        }*/
+
+        Scanner scanner = new Scanner((System.in));
+        System.out.println("Ingrese el apellido del alumno que desea encontrar: ");
+        String apellido1 = scanner.next();
+
+        Alumno alumno1 = (Alumno)listaAlumnos.stream()
+                .filter(x -> x.getApellido().equals(apellido1))
+                .findAny()
+                .orElseThrow();
         for (Alumno alumno : listaAlumnos){
             System.out.println("El nombre del alumno es: "+alumno.getNombre());
             System.out.println("El apellido del alumno es: "+alumno.getApellido());
             System.out.println("La edad del alumno es: "+alumno.getEdad());
             System.out.println("---------------------------------------");
         }
-
-        Alumno alumno1 = (Alumno)listaAlumnos.stream()
-                .filter(x -> x.getApellido().equals("Almeida"))
-                .findAny()
-                .orElseThrow();
-        System.out.println("El alumno encontrado es: "+alumno1.getApellido());
     }
 }
